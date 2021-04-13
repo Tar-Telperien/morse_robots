@@ -24,9 +24,21 @@
 // Create an instance of class CORE_TRICOLOR named beacon on port S3
 CORE_COLOR_BEACON beacon;
 
+// Create an instance of the class CORE_DIGITAL named push on port D7
+CORE_DIGITAL push(7);
+
 void setup(){
 // No setup code required
+  beacon.setColor(beacon.OFF);
+
+  String msg = "MORSE"; 
+  String msg1 = "COMPUTER SCIENCE";
+  String msg2 = "THERESE";
+
+  encode(msg);
 }
+
+const int ms = 200; //delay time/light speed in ms; == interval
 
 /* 
 * MORSE TO LIGHT CODE KEY
@@ -39,8 +51,6 @@ void setup(){
 // s = morse string of letter received from encode function
 // returns light flashes on color beacon
 void morse2light(String s){
-  int ms = 300; //delay time/light speed in ms; 
-
   for (int i = 0; i < s.length(); i++){
     if (s.charAt(i) == '.'){
       beacon.setColor(beacon.RED);
@@ -151,18 +161,19 @@ void encode(String msg){
         }
   }
 
-  // END OF MESSAGE: 3 Blinks of White
-  beacon.setColor(beacon.WHITE);
-  delay(300);
+  // END OF MESSAGE: 3 Blinks of GREEN
+  beacon.setColor(beacon.GREEN);
+  delay(ms);
   beacon.setColor(beacon.OFF);
-  delay(300);
-  beacon.setColor(beacon.WHITE);
-  delay(300);
+  delay(ms);
+  beacon.setColor(beacon.GREEN);
+  delay(ms);
   beacon.setColor(beacon.OFF);
-  delay(300);
-  beacon.setColor(beacon.WHITE);
-  delay(300);
+  delay(ms);
+  beacon.setColor(beacon.GREEN);
+  delay(ms);
   beacon.setColor(beacon.OFF);
+  delay(ms);
 }
 
 /* 
@@ -176,15 +187,16 @@ void encode(String msg){
 *                       red blue red green 
 *                       red red red green
 *                       red green
-*                       white white white 
+*                       green green green 
 */
 
 // LOOP()/ MAIN FUNCTION TO RUN ON ROBOT
 // Enter string, encode, and transmit through color beacon
 void loop(){
-  beacon.setColor(beacon.OFF);
+  /*beacon.setColor(beacon.OFF);
 
   String message = "MORSE"; 
+  String message2 = "COMPUTER SCIENCE";
 
-  encode(message);
+  encode(message);*/
 }
